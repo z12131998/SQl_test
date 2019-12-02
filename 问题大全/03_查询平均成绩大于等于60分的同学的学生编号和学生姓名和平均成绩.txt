@@ -1,0 +1,9 @@
+-- 03 查询平均成绩大于等于60分的同学的学生编号和学生姓名和平均成绩
+
+select t1.s_id,t1.s_name ,avg(t2.s_score) as avg from 
+Student as t1 join Score as t2 on t1.s_id = t2.s_id
+group by t1.s_id
+having avg >=60
+
+一道考察分组的题目
+SQL首先查出了t1和t2的表,然后通过学生id进行分组,最后获取平均数,然后通过having调教查询出大于等于60分的

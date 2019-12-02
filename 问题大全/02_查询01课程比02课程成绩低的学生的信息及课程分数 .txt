@@ -1,0 +1,7 @@
+-- 2、查询"01"课程比"02"课程成绩低的学生的信息及课程分数	
+
+select t1.*,t2.s_score as '01' , t3.s_score as '02' from 
+(Student as t1 join Score as t2 on t1.s_id = t2.s_id and t2.c_id = '01' 
+left join Score as t3 on t3.s_id = t1.s_id and t3.c_id= '02') where t2.s_score < t3.s_score
+
+与第一题解题思路一样

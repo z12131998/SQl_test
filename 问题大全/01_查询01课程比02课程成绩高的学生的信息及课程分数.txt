@@ -1,0 +1,9 @@
+-- 1、查询"01"课程比"02"课程成绩高的学生的信息及课程分数	
+
+select t1.*,t2.s_score as '01' , t3.s_score as '02' from 
+(Student as t1 join Score as t2 on t1.s_id = t2.s_id and t2.c_id = '01' 
+left join Score as t3 on t3.s_id = t1.s_id and t3.c_id= '02') where t2.s_score > t3.s_score
+
+第一题并不是劝退题,仔细理解题目我们可知要对比01和02课程的成绩,那么我们首先查出01和02课程的成绩
+
+首先查出01课程的成绩,再通过左链接(因为需要学生的信息)查出02课程的成绩,再通过where语句对比成绩即可
