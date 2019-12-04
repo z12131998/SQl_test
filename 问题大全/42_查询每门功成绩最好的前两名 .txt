@@ -1,0 +1,5 @@
+-- 42、查询每门功成绩最好的前两名 
+select t1.c_id ,t1.s_id ,t1.s_score  from Score as t1 left join Score as t2 
+	on t1.c_id = t2.c_id and t2.s_score >= t1.s_score 
+ group by t1.c_id ,t1.s_id having count(t2.s_id)<3
+order by t1.c_id,t1.s_score desc

@@ -1,0 +1,11 @@
+-- 18.查询各科成绩最高分、最低分和平均分：以如下形式显示：课程ID，课程name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率
+-- 及格为>=60，中等为：70-80，优良为：80-90，优秀为：>=90
+select t1.c_id as 课程Id , t1.c_name as 课程Name , max(t2.s_score) as 最高分 ,min(t2.s_score) as 最低分 ,Round(avg(t2.s_score)) as 平均分
+ , ROUND(100*(SUM(case when t2.s_score>=60 then 1 else 0 end)/SUM(case when t2.s_score then 1 else 0 end)),2) as 及格率 ,
+	 ROUND(100*(SUM(case when t2.s_score>=70 and t2.s_score<=80 then 1 else 0 end)/SUM(case when t2.s_score then 1 else 0 end)),2) as 中等率,
+	 ROUND(100*(SUM(case when t2.s_score>=80 and t2.s_score<=90 then 1 else 0 end)/SUM(case when t2.s_score then 1 else 0 end)),2) as 优良率,
+ROUND(100*(SUM(case when t2.s_score>=90 then 1 else 0 end)/SUM(case when t2.s_score then 1 else 0 end)),2) as 优秀率
+   from 
+Course as t1 , Score as t2 where t1.c_id = t2.c_id group by t1.c_id
+
+-- 这道题考察了如何进行一个统计的查询,以及group by分组其实数据还是有的

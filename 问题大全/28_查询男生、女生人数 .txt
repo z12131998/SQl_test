@@ -1,0 +1,3 @@
+-- 28、查询男生、女生人数 
+select t1.s_sex,count(t1.s_sex) from 
+Student as t1 GROUP BY t1.s_sex

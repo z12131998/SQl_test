@@ -1,0 +1,7 @@
+-- 17、按平均成绩从高到低显示所有学生信息以及的所有课程的成绩以及平均成绩
+select t1.* , 
+(select t2.s_score from Score as t2 where t2.c_id = '01' and t2.s_id = t1.s_id) as 语文 ,
+(select t3.s_score from Score as t3 where t3.c_id = '02'  and t3.s_id = t1.s_id ) as 数学 ,
+(select t4.s_score from Score as t4 where t4.c_id = '03'   and t4.s_id = t1.s_id ) as 英语
+from 
+Student as t1  

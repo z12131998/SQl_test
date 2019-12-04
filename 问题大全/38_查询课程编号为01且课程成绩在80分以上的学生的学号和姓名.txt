@@ -1,0 +1,3 @@
+-- 38、查询课程编号为01且课程成绩在80分以上的学生的学号和姓名； 
+select t1.s_id ,t1.s_name ,(select c_name from Course where c_id = t2.c_id )as 课程名称 ,t2.s_score from Student as t1 left join Score as t2
+on t1.s_id = t2.s_id and t2.c_id = '01' where t2.s_score >60

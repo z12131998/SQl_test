@@ -1,0 +1,25 @@
+-- 23、统计各科成绩各分数段人数：课程编号,课程名称,[100-85],[85-70],[70-60],[0-60]及所占百分比
+select distinct a.* ,b.b,c.c ,d.d from 
+(
+select t2.c_id,t2.c_name,
+100 * (sum(case when t1.s_score >= 85 and t1.s_score <= 100 then 1 else 0 end )/sum(case when t1.s_score then 1 else 0 end)) as a
+ from 
+Score as t1 join Course as t2 group by t2.c_id ) as a 
+left join 
+(
+select t2.c_id,t2.c_name,
+100 * (sum(case when t1.s_score >= 70 and t1.s_score <= 84 then 1 else 0 end )/sum(case when t1.s_score then 1 else 0 end)) as b
+ from 
+Score as t1 join Course as t2 group by t2.c_id ) as b on a.c_id = b.c_id
+left join 
+(
+select t2.c_id,t2.c_name,
+100 * (sum(case when t1.s_score >= 60 and t1.s_score < 70 then 1 else 0 end )/sum(case when t1.s_score then 1 else 0 end)) as c
+ from 
+Score as t1 join Course as t2 group by t2.c_id ) as c on a.c_id = c.c_id
+left join 
+(
+select t2.c_id,t2.c_name,
+100 * (sum(case when t1.s_score <60 then 1 else 0 end )/sum(case when t1.s_score then 1 else 0 end)) as d
+ from 
+Score as t1 join Course as t2 group by t2.c_id ) as d on a.c_id = c.c_id

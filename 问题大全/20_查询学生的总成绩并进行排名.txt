@@ -1,0 +1,6 @@
+-- 20、查询学生的总成绩并进行排名
+
+select t1.s_id,sum(t1.s_score) as 总成绩 ,
+@i:= @i +1 as 排名
+from 
+Score as t1,(select @i:=0) as init group by t1.s_id  order by 总成绩 desc 

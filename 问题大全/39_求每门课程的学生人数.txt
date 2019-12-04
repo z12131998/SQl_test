@@ -1,0 +1,2 @@
+-- 39、求每门课程的学生人数 
+select c_id,count(s_id) as 学生人数 from Score group by c_id;

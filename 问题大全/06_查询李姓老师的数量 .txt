@@ -1,0 +1,5 @@
+-- 6、查询"李"姓老师的数量 
+select * from 
+Teacher as t1 where t1.t_name like '李%'
+
+考察通配符与Like 没什么好说的

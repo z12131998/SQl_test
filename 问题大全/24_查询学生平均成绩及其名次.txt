@@ -1,0 +1,7 @@
+-- 24、查询学生平均成绩及其名次 
+select a.s_id,a.平均成绩,@i:=@i+1 as 排名 from (
+	select t1.s_id ,avg(t1.s_score) as 平均成绩
+		from 
+		Score as t1  group by t1.s_id order by 平均成绩 desc)a,(select @i:=0) as init ;
+
+-- 排序是最后显示时候排序,所以变量会有错误 要改

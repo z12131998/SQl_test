@@ -1,0 +1,13 @@
+-- 19、按各科成绩进行排序，并显示排名
+-- mysql没有rank函数
+
+select 
+t1.s_id,t1.c_id,(select t2.c_name from Course as t2 where t2.c_id = t1.c_id) as 课程名称,
+@i:= (case when @c_id=t1.c_id then @i+1 else @i:=1 and @c_id:=t1.c_id  end) as  保留排名,
+@k:= (case when @i=1 then @k:=1 else ( case when @s_score=t1.s_score then @k else @k+1 end)end) as 非保留排名,
+@s_score:=t1.s_score as 成绩
+from
+Score as t1 ,(select @i:=0,@c_id:='01',@k:=0,@s_score:=0) as init order by t1.c_id,成绩 desc  ;
+-- 如果使用left join Course那么会导致变量错误,设计到Mysql数据库原理问题
+
+-- i为保留排名 k为非保留排名 c_id为课程名称排名, s_score用于判断是否k是否为一样排名

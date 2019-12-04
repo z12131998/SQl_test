@@ -1,0 +1,5 @@
+-- 15、查询两门及其以上不及格课程的同学的学号，姓名及其平均成绩 
+select t1.s_id,t1.s_name,avg(t2.s_score )from 
+Student as t1 join Score as t2
+on t1.s_id = t2.s_id where t2.s_score<60
+group by t1.s_id having count(t1.s_id)>=1

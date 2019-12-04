@@ -1,0 +1,4 @@
+-- 21、查询不同老师所教不同课程平均分从高到低显示 
+
+select  t2.t_id as 老师编号 , t1.c_id as 课程编号 ,avg(t1.s_score) as 平均分  from 
+Score as t1 join Course as t2 on t1.c_id = t2.c_id group by t1.c_id  order by t2.t_id 

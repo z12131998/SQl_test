@@ -1,0 +1,2 @@
+-- 49、查询本月过生日的学生
+select * from Student where MONTH(DATE_FORMAT(NOW(),'%Y%m%d')) =MONTH(s_birth)

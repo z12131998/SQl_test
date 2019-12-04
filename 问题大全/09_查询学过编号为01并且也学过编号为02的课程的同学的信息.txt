@@ -1,0 +1,7 @@
+-- 9、查询学过编号为"01"并且也学过编号为"02"的课程的同学的信息
+
+select t1.* from 
+Student as t1 join Score as t2 
+on  t1.s_id = t2.s_id and t2.c_id = '01'
+join Score as t3
+ on t3.s_id = t1.s_id and t3.c_id = '02'

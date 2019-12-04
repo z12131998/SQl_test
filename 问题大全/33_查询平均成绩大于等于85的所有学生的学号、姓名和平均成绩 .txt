@@ -1,0 +1,4 @@
+-- 33、查询平均成绩大于等于85的所有学生的学号、姓名和平均成绩 
+
+select t1.s_id,t1.s_name ,avg(t2.s_score) as avg from 
+Student as t1 left join Score as t2 on t1.s_id = t2.s_id group by t1.s_id HAVING avg>=85

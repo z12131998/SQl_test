@@ -1,0 +1,4 @@
+-- 27.查询出只有两门课程的全部学生的学号和姓名
+select t1.s_id,t1.s_name from 
+Student as t1 left join Score as t2 
+on t1.s_id = t2.s_id group by t1.s_id,t1.s_name having count(t2.s_id)<3

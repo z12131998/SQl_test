@@ -1,0 +1,7 @@
+-- 12、查询至少有一门课与学号为"01"的同学所学相同的同学的信息 
+
+select distinct t1.* from 
+Student as t1 join Score as t2
+on t2.s_id = t1.s_id where t2.c_id in (
+select t3.c_id from 
+Score as t3 where t3.s_id = 01)

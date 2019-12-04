@@ -1,0 +1,16 @@
+ -- 8、查询没学过"张三"老师授课的同学的信息 
+select t1.* from 
+Student as t1 where t1.s_id not in
+(select t1.s_id from 
+Student as t1 join Score as t2 
+on t1.s_id = t2.s_id and t2.c_id in 
+( select t3.c_id from 
+Course as t3 where t3.t_id =  -- 他是等于张三老师的
+( select t4.t_id from 
+ Teacher as t4 where t4.t_name = '张三'
+)
+)
+)
+
+
+-- 如果我们直接not in张三的,那么他还有其他的成绩会关联到张三老师的,所以这里使用一个嵌套查询塞到前面,筛选出没有张三成绩的

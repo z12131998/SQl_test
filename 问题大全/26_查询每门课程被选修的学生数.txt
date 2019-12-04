@@ -1,0 +1,4 @@
+-- 26、查询每门课程被选修的学生数 
+
+select t1.c_id,count(t1.s_id) from 
+Score as t1 group by t1.c_id

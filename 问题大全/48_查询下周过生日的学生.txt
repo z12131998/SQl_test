@@ -1,0 +1,2 @@
+-- 48、查询下周过生日的学生
+	select * from Student where WEEK(DATE_FORMAT(NOW(),'%Y%m%d'))+1 =WEEK(s_birth)

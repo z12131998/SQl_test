@@ -1,0 +1,7 @@
+-- 11、查询没有学全所有课程的同学的信息 
+select t1.*,count(t1.s_id) as score from 
+Student as t1 join Score as t2
+on t1.s_id = t2.s_id  group by t1.s_id having score < 3
+
+
+考察了分组为什么可以使用count? 首先经过count后才进行分组,然后筛选出少于3个课程的,3可以改为 select count(*) from Score

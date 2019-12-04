@@ -1,0 +1,8 @@
+-- 16、检索"01"课程分数小于60，按分数降序排列的学生信息
+select t1.* ,t2.s_score from 
+Student as t1 join Score as t2
+on t1.s_id = t2.s_id and t2.c_id = '01' where t2.s_score < 60
+order by t2.s_score desc
+
+
+基础题

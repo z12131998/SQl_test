@@ -1,0 +1,4 @@
+-- 32、查询每门课程的平均成绩，结果按平均成绩降序排列，平均成绩相同时，按课程编号升序排列 
+
+select t1.c_id , round(avg(t1.s_score)) as 平均  from
+Score as t1  group by t1.c_id  order by 平均 desc,c_id asc

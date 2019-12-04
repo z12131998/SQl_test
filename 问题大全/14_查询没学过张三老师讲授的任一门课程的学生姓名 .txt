@@ -1,0 +1,9 @@
+-- 14、查询没学过"张三"老师讲授的任一门课程的学生姓名 
+
+select t1.* from Student as t1 where t1.s_id in (
+select t2.s_id from Score as t2 where t2.c_id in(
+select t3.c_id from 
+Course t3 where t3.t_id =(select t_id from Teacher where t_name = '张三')))
+
+
+-- 首先查出张三老师的课程,然后再查学生是否学过

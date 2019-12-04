@@ -1,0 +1,2 @@
+-- 31、查询1990年出生的学生名单
+select * from Student where s_birth like '1990%'

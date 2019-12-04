@@ -1,0 +1,5 @@
+
+-- 37、查询不及格的课程 
+
+select t1.s_id, t1.s_name,(select c_name from Course where t2.c_id = c_id) as 课程名称 ,t2.s_score from Student as t1 left join Score as t2
+on t1.s_id = t2.s_id where t2.s_score <60

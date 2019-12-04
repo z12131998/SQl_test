@@ -1,0 +1,14 @@
+-- 7、查询学过"张三"老师授课的同学的信息 
+select t1.* from 
+Student as t1 join Score as t2 
+on t1.s_id = t2.s_id and t2.c_id in 
+( select t3.c_id from 
+Course as t3 where t3.t_id =  -- 他是等于张三老师的
+( select t4.t_id from 
+ Teacher as t4 where t4.t_name = '张三'
+)
+)
+
+
+
+-- 首先我们从四个表结构发现,只有成绩表和学生表关联,那么通过有成绩查询出课程,并查出只有张三老师课程成绩的同学

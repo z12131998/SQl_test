@@ -1,0 +1,6 @@
+-- 40、查询选修"张三"老师所授课程的学生中，成绩最高的学生信息及其成绩
+
+select t1.s_name ,t2.s_score ,t2.c_id from Student as t1 left join Score as t2
+	on t1.s_id = t2.s_id where t2.c_id in (
+		select c_id from Course where t_id = (select t3.t_id from Teacher as t3 where t3.t_name='张三' )
+)

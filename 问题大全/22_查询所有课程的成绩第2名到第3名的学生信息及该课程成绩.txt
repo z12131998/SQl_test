@@ -1,0 +1,25 @@
+-- 22、查询所有课程的成绩第2名到第3名的学生信息及该课程成绩
+
+select d.*,c.排名,c.s_score,c.c_id from (
+                select a.s_id,a.s_score,a.c_id,@i:=@i+1 as 排名 from Score a,(select @i:=0)s where a.c_id='01'  
+								ORDER BY a.s_score DESC  
+            )c
+            left join Student d on c.s_id=d.s_id
+            where 排名 BETWEEN 2 AND 3
+UNION
+            select d.*,c.排名,c.s_score,c.c_id from (
+                select a.s_id,a.s_score,a.c_id,@j:=@j+1 as 排名 from Score a,(select @j:=0)s where a.c_id='02'  
+								ORDER BY a.s_score DESC
+            )c
+            left join Student d on c.s_id=d.s_id
+            where 排名 BETWEEN 2 AND 3
+UNION
+ select d.*,c.排名,c.s_score,c.c_id from (
+                select a.s_id,a.s_score,a.c_id,@k:=@k+1 as 排名 from Score a,(select @k:=0)s where a.c_id='03' 
+								ORDER BY a.s_score DESC
+            )c
+            left join Student d on c.s_id=d.s_id
+            where 排名 BETWEEN 2 AND 3;
+-- 考察一个条件的范围查询
+-- 考察多个变量的作用域问题
+-- 考察了join与变量的冲突问题解决

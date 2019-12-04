@@ -1,0 +1,7 @@
+-- 13、查询和"01"号的同学学习的课程完全相同的其他同学的信息 
+
+select t1.* from Student as t1 where t1.s_id in (
+select t2.s_id from Score as t2 group by t2.s_id having GROUP_CONCAT(t2.c_id order by t2.c_id) =(
+select GROUP_CONCAT(t3.c_id order by t3.c_id) from Score as t3 where t3.s_id = 03))
+
+通过字符串拼接筛选出一样的,开始我以为是弄加法,不知道有拼接

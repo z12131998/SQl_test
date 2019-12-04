@@ -1,0 +1,25 @@
+-- 23、统计各科成绩各分数段人数：课程编号,课程名称,[100-85],[85-70],[70-60],[0-60]及所占百分比
+select DISTINCT t1.c_id ,f.c_name,a.`85-100`,a.`百分比`,b.`75-80`,b.`百分比`,c.`70-60`,c.`百分比`,d.`0-60`,d.`百分比` from Score as t1 
+left join 
+(select c_id , 
+SUM(case when s_score 85 and s_score =100 then 1 else 0 end) as `85-100`,
+100 (SUM(case when s_score 85 and s_score =100 then 1 else 0 end)SUM(case when s_score then 1 else 0 end ))as 百分比
+from Score group by c_id) a on t1.c_id = a.c_id
+left join 
+(select c_id , 
+SUM(case when s_score 70 and s_score =80 then 1 else 0 end) as `75-80`,
+100 (SUM(case when s_score 70 and s_score =80 then 1 else 0 end)SUM(case when s_score then 1 else 0 end ))as 百分比
+from Score group by c_id ) b on a.c_id = b.c_id  
+left join 
+(select c_id , 
+SUM(case when s_score 60 and s_score =70 then 1 else 0 end) as `70-60`,
+100 (SUM(case when s_score 70 and s_score =80 then 1 else 0 end)SUM(case when s_score then 1 else 0 end ))as 百分比
+from Score group by c_id ) c on a.c_id = c.c_id 
+left join 
+(select c_id , 
+SUM(case when s_score =60 then 1 else 0 end) as `0-60`,
+100 (SUM(case when s_score =60 then 1 else 0 end)SUM(case when s_score then 1 else 0 end ))as 百分比
+from Score group by c_id ) d on a.c_id = d.c_id 
+left join 
+Course as f on f.c_id = t1.c_id;
+-- 本题思路考核了一个表的作用,尽量一个表只执行一个任务

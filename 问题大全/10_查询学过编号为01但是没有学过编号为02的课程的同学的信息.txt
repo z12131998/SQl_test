@@ -1,0 +1,10 @@
+-- 10、查询学过编号为"01"但是没有学过编号为"02"的课程的同学的信息
+select t1.* from
+Student as t1 where t1.s_id in 
+(select t2.s_id from Score as t2 where t2.c_id = '01')
+and t1.s_id not in 
+(select t2.s_id from Score as t2 where t2.c_id = '02')
+
+
+
+改变思路,先获取01的,然后使用and筛选出没有02的

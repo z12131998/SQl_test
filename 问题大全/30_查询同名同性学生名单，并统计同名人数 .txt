@@ -1,0 +1,6 @@
+30
+-- 30、查询同名同性学生名单，并统计同名人数 
+
+select t1.* ,count(t2.s_id) as 人数 from 
+Student as t1 join Student as t2 on t1.s_name =t2.s_name and t1.s_sex = t2.s_sex
+group by t1.s_id having count(t2.s_id)>1

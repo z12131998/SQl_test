@@ -1,0 +1,9 @@
+-- 35、查询所有学生的课程及分数情况； 
+
+select 
+t1.s_id,
+SUM(case when t2.c_name = '语文' then t1.s_score else 0 end ) as '语文',
+SUM( case when t2.c_name = '数学' then t1.s_score else 0 end )as '数学',
+SUM( case when t2.c_name = '英语' then t1.s_score else 0 end )as '英语',
+SUM(t1.s_score) as 总分
+from Score as t1 left join Course as t2 on t1.c_id = t2.c_id group by t1.s_id

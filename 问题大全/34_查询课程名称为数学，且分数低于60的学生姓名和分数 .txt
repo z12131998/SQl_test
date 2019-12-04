@@ -1,0 +1,4 @@
+-- 34、查询课程名称为"数学"，且分数低于60的学生姓名和分数 
+
+select t1.s_name,t2.s_score from Student as t1 left join Score t2
+on t1.s_id = t2.s_id and t2.c_id = '02' where t2.s_score < 60
